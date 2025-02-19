@@ -21,7 +21,7 @@ function LayoutDashboard() {
         <Sidenav isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
       </div>
 
-      <div className="flex-1   overflow-y-auto flex  justify-center items-center  bg-[#2E2E2E]    text-white   2xl:col-span-10 xl:col-span-9 lg:col-span-8  col-span-12 ">
+      <div className="flex-1 h-screen  overflow-y-auto flex  justify-center items-center  bg-[#2E2E2E]    text-white   2xl:col-span-10 xl:col-span-9 lg:col-span-8  col-span-12 ">
       {!isSidebarOpen && (
         <div
           className="absolute top-6  left-0 lg:hidden block"

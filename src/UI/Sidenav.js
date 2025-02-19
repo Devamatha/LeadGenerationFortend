@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import imageSample from "../assets/icons/clarity_employee.png";
 import materialSymbol from "../assets/icons/material.png";
 import plus from "../assets/icons/plus.png";
@@ -7,6 +7,7 @@ import logout from "../assets/icons/logout.png";
 import CloseIcon from '@mui/icons-material/Close';
 function Sidenav({ isSidebarOpen, toggleSidebar }) {
   const [openItems, setOpenItems] = useState({});
+  const navigate=useNavigate();
   const toggleOpen = (id) => {
     setOpenItems((prev) => ({
       ...prev,
@@ -64,6 +65,10 @@ function Sidenav({ isSidebarOpen, toggleSidebar }) {
       routerLink: "/",
     },
   ];
+  const handlelogout=()=>{
+    sessionStorage.clear();
+    navigate("/",{replace:true});
+  }
   // bg-[#2C5F99]
   return (
     <div className={`h-screen bg-[#2C5F99]  transition-transform duration-300  ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}>
@@ -83,9 +88,8 @@ function Sidenav({ isSidebarOpen, toggleSidebar }) {
         {data.map((item) => (
           <div key={item.id} className="flex flex-col items-start w-[250px]">
             {item.name === "Logout" ? (
-              <Link
-                to={item.routerLink}
-                replace={true}
+              <div
+                onClick={handlelogout}
                 className="flex justify-between self-stretch bg-[#FFFFFF] p-[8px] cursor-pointer"
               >
                 <div className="flex items-center gap-[8px]">
@@ -98,7 +102,7 @@ function Sidenav({ isSidebarOpen, toggleSidebar }) {
                     {item.name}
                   </p>
                 </div>
-              </Link>
+              </div>
             ) : (
               <>
                 <div
