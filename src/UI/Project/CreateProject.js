@@ -35,8 +35,8 @@ function CreateProject() {
     }
   };
   return (
-    <div className="flex  justify-center items-center">
-      <div className="flex  px-[34px] py-[26px]  gap-[32px]  flex-col items-start bg-[#FFFFFF] rounded-xl">
+    <div className="flex  justify-center items-center  ">
+      <div className="flex  px-[34px] py-[26px]  gap-[32px]   flex-col items-start bg-[#FFFFFF] rounded-xl">
         <h3 className="dm-sans-font md:text-[28px] text-[22px] text-[#000000]">
           Create a new employee
         </h3>

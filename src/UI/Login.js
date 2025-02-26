@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect  } from "react";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import TextField from "@mui/material/TextField";
@@ -8,6 +8,9 @@ import InputAdornment from "@mui/material/InputAdornment";
 import PersonIcon from "@mui/icons-material/Person";
 import { useNavigate } from "react-router-dom";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import background from "../../src/assets/icons/background.png";
+import mobileview from "../../src/assets/icons/mobileview.png";
+import Tabview from "../../src/assets/icons/backgroundTab.png";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -18,12 +21,15 @@ function Login() {
   const [snackbarSeverity, setSnackbarSeverity] = useState("error");
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
+
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
   };
+
+  
 
   const handleSubmit = async () => {
     if (!username || !password) {
@@ -63,8 +69,8 @@ function Login() {
     }
   };
   return (
-    <div className="flex  justify-center items-center bg-[#2C5F99] h-screen">
-      <div className="flex w-[447px] px-[34px] py-[26px]  gap-[32px]  flex-col items-start bg-[#FFFFFF] rounded-xl">
+    <div className="flex  justify-center items-center b h-screen LoginPageBackground md:w-auto "  >
+      <div className="flex  px-[34px] py-[26px]  gap-[32px]  flex-col items-start bg-[#FFFFFF] rounded-xl">
         <h3 className="dm-sans-font text-[28px] text-[#000000]">Admin Login</h3>
         <TextField
           required
@@ -72,7 +78,7 @@ function Login() {
           label="Email"
           value={username}
           defaultValue="Email"
-          className="h-[48px] w-[379px]"
+          className="h-[48px] md:w-[379px]"
           onChange={(e) => setUserName(e.target.value)}
           InputProps={{
             endAdornment: (
@@ -92,7 +98,7 @@ function Login() {
 
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="h-[48px] w-[379px]"
+          className="h-[48px] md:w-[379px]"
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
@@ -110,7 +116,7 @@ function Login() {
           }}
         />
         <button
-          className="poppins-regular text-[16px] text-[#F9F9F9] font-semibold bg-[#2C5F99] h-[44px] w-[361px] rounded-sm p-[10px]"
+          className="poppins-regular text-[16px] text-[#F9F9F9] font-semibold bg-[#2C5F99] h-[44px]  md:w-[361px] w-full rounded-sm p-[10px]"
           onClick={handleSubmit}
         >
           Login

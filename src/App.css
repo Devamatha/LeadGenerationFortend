@@ -24,3 +24,24 @@
   line-height: normal;
 }
 
+.LoginPageBackground{
+  background-image: url("./assets/icons/background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat
+}
+
+@media screen and (min-width: 768px)and (max-width: 1023px) {
+  .LoginPageBackground{
+    background-image: url("./assets/icons/backgroundTab.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat
+  }
+}
+
+@media screen and (min-width: 320px)and (max-width: 425px) {
+  .LoginPageBackground{
+    background-image: url("./assets/icons/mobileview.png");
+    }
+}
