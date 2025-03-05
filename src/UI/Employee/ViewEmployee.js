@@ -17,7 +17,8 @@ import { useParams } from "react-router-dom";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import { LoginApI } from "../../Services/employeeService";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
@@ -195,6 +196,34 @@ function ViewEmployee() {
       navigate(`/`, { replace: true });
     }
   };
+const handleExportPdf = () => {
+      const doc = new jsPDF();
+      doc.text("Employee Data", 20, 10);
+    
+      const tableColumn = ["S.No",  "fullName", "Mobile Number", "Email Id", "Lead count" ];
+      const tableRows = [];
+    
+      filteredEmployees.forEach((employee, index) => {
+        const employeeData = [
+          index + 1,
+          employee.fullName,
+          employee.email,
+          employee.mobileNumber,
+          employee.leadCount
+         
+        ];
+        tableRows.push(employeeData);
+      });
+    
+      doc.autoTable({
+        head: [tableColumn],
+        body: tableRows,
+        startY: 20,
+      });
+    
+      doc.save("EmployeeData.pdf");
+    };
+
 
   return (
     <div className="w-full h-full gap-[35px]  inline-flex flex-col   rounded-xl lg:pl-[60px] lg:pr-[59px] lg:pb-[131px] lg:pt-[55px] p-4  ">
@@ -245,7 +274,7 @@ function ViewEmployee() {
           >
             InActive Employes
           </button>
-          <button className="bg-[#497CB6] work-sans text-[#FFFFFF] w-auto  rounded-xs  flex justify-center p-[10px]   items-center mr-2">
+          <button className="bg-[#497CB6] work-sans text-[#FFFFFF] w-auto  rounded-xs  flex justify-center p-[10px]   items-center mr-2" onClick={handleExportPdf}>
             Export Pdf
           </button>
           </div>
